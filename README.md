@@ -55,8 +55,8 @@ I'm a **Full-Stack Engineer** based in Karachi, Pakistan, specialising in buildi
 ## 📊 GitHub Stats
 
 <p align="left">
-  <img src="https://github-readme-stats.vercel.app/api?username=shammadahmed&show_icons=true&theme=default&hide_border=true" alt="Hammad's GitHub stats" height="160"/>
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=shammadahmed&layout=compact&theme=default&hide_border=true" alt="Top languages" height="160"/>
+  <img src="https://github-readme-stats.vercel.app/api?username=shammadahmed&show_icons=true&theme=default&hide_border=true&cache_seconds=86400" alt="Hammad's GitHub stats" height="160"/>
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=shammadahmed&layout=compact&theme=default&hide_border=true&cache_seconds=86400" alt="Top languages" height="160"/>
 </p>
 
 ---
@@ -65,4 +65,4 @@ I'm a **Full-Stack Engineer** based in Karachi, Pakistan, specialising in buildi
 
 - 🌐 [shammadahmed.github.io](https://shammadahmed.github.io)
 - 🐦 [@shammadahmed](https://twitter.com/shammadahmed) on X / Twitter
-- 💼 [github.com/shammadahmed](https://github.com/shammadahmed)
+- 💼 [linkedin.com/in/shammadahmed](https://www.linkedin.com/in/shammadahmed)

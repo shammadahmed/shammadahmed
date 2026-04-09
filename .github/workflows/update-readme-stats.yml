@@ -1,0 +1,46 @@
+name: Update README Stats
+
+on:
+  schedule:
+    - cron: "0 */6 * * *"  # Every 6 hours
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-stats:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Fetch GitHub Stats SVG
+        run: |
+          HTTP_CODE=$(curl -s -w "%{http_code}" -o /tmp/github-stats.svg \
+            "https://github-readme-stats.vercel.app/api?username=shammadahmed&show_icons=true&theme=default&hide_border=true&count_private=true&include_all_commits=true")
+          if [ "$HTTP_CODE" = "200" ] && grep -q "<svg" /tmp/github-stats.svg && ! grep -qi "rate limit\|couldn't resolve\|maximum" /tmp/github-stats.svg; then
+            cp /tmp/github-stats.svg github-stats.svg
+            echo "Stats SVG fetched successfully"
+          else
+            echo "Stats fetch failed (HTTP $HTTP_CODE) — keeping existing file"
+          fi
+
+      - name: Fetch Top Languages SVG
+        run: |
+          HTTP_CODE=$(curl -s -w "%{http_code}" -o /tmp/github-top-langs.svg \
+            "https://github-readme-stats.vercel.app/api/top-langs/?username=shammadahmed&layout=compact&theme=default&hide_border=true")
+          if [ "$HTTP_CODE" = "200" ] && grep -q "<svg" /tmp/github-top-langs.svg && ! grep -qi "rate limit\|couldn't resolve\|maximum" /tmp/github-top-langs.svg; then
+            cp /tmp/github-top-langs.svg github-top-langs.svg
+            echo "Top languages SVG fetched successfully"
+          else
+            echo "Top languages fetch failed (HTTP $HTTP_CODE) — keeping existing file"
+          fi
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add github-stats.svg github-top-langs.svg 2>/dev/null || true
+          git diff --staged --quiet || git commit -m "chore: update GitHub stats [skip ci]"
+          git push
